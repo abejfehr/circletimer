@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>circletimer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="dist/circletimer.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+    <link href="dist/circletimer.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Pacifico|Raleway">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAg5O/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEREQAAAAAREREREQAAAREREREREAARERERERERABEREREREREBEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREQEREREREREQARERERERERAAERERERERAAABERERERAAAAABEREQAAD4HwAA4AcAAMADAACAAQAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAACAAQAAwAMAAOAHAAD4HwAA" rel="icon" type="image/x-icon">
+    <style media="screen">
+      /* Styles for this page are embedded in the page, so you can see exactly what's going on! */
+      html,
+      body {
+        background-color: #e7e0d2;
+        font-family: arial, sans-serif;
+      }
+
+      .example {
+        text-align: center;
+      }
+
+      /* Make sure the div you use for this is a square! */
+      #example-timer {
+        height: 150px;
+        margin: 20px auto;
+        width: 150px;
+      }
+
+      h1 {
+        color: #17a768;
+        font-family: 'Pacifico', cursive;
+        font-size: 40pt;
+        margin: 40px 0 5px;
+        text-align: center;
+      }
+
+      h1 a {
+        color: #17a768;
+        text-decoration: none;
+      }
+
+      h1 a:hover {
+        color: #32dd92;
+      }
+
+      h5 {
+        color: #f1601d;
+        font-family: 'Raleway', sans-serif;
+        font-size: 13pt;
+        margin: 0;
+        text-align: center;
+      }
+
+      h5 a {
+        color: #f1ad1d;
+        text-decoration: none;
+      }
+
+      h5 a:hover {
+        color: #f1ad1d;
+        text-decoration: underline;
+      }
+
+      p {
+        color: #bbae93;
+      }
+
+      button {
+        background-color: #f1601d;
+        border: none;
+        border-radius: 3px;
+        color: #e7e0d2;
+        margin: 0 8px;
+        padding: 6px 9px;
+      }
+
+      button:hover {
+        background-color: #f1ad1d;
+      }
+
+      pre {
+        display: table;
+        margin: 20px auto;
+        text-align: left;
+      }
+
+      code {
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <h1><a href="https://github.com/abejfehr/circletimer">circletimer</a>.</h1>
+    <h5>An SVG-based <a href="https://jquery.com/">jQuery</a> and <a href="http://zeptojs.com/">Zepto</a> circular timer plugin.</h5>
+    <!-- Example -->
+    <div class="example">
+      <div id="example-timer"></div>
+      <p>Time Elapsed: <span id="time-elapsed">0</span>ms</p>
+      <button id="start">Start</button>
+      <button id="pause">Pause</button>
+      <button id="stop">Stop</button>
+      <pre>
+        <code class="javascript">
+$(document).on("ready", function() {
+  $("#example-timer").circletimer({
+    onComplete: function() {
+      alert("Time is up!");
+    },
+    onUpdate: function(elapsed) {
+      $("#time-elapsed").html(Math.round(elapsed));
+    },
+    timeout: 5000
+  });
+
+  $("#start").on("click", function() {
+    $("#example-timer").circletimer("start");
+  });
+
+  $("#pause").on("click", function() {
+    $("#example-timer").circletimer("pause");
+  });
+
+  $("#stop").on("click", function() {
+    $("#example-timer").circletimer("stop");
+  });
+        </code>
+      </pre>
+    </div>
+    <!-- Fork me on Github! -->
+    <a href="https://github.com/abejfehr/circletimer"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+    <script>
+      /* Code highlighting */
+      hljs.initHighlightingOnLoad();
+
+      /* Example code */
+      $(document).on("ready", function() {
+        $("#example-timer").circletimer({
+          onComplete: function() {
+            alert("Time is up!");
+          },
+          onUpdate: function(elapsed) {
+            $("#time-elapsed").html(Math.round(elapsed));
+          },
+          timeout: 5000
+        });
+
+        $("#start").on("click", function() {
+          $("#example-timer").circletimer("start");
+        });
+
+        $("#pause").on("click", function() {
+          $("#example-timer").circletimer("pause");
+        });
+
+        $("#stop").on("click", function() {
+          $("#example-timer").circletimer("stop");
+        });
+      })
+    </script>
+  </body>
+</html>
