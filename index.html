@@ -103,6 +103,7 @@
       <button id="start">Start</button>
       <button id="pause">Pause</button>
       <button id="stop">Stop</button>
+      <button id="add">Add 1s</button>
       <pre>
         <code class="javascript">
 $(document).on("ready", function() {
@@ -126,6 +127,10 @@ $(document).on("ready", function() {
 
   $("#stop").on("click", function() {
     $("#example-timer").circletimer("stop");
+  });
+
+  $("#add").on("click", function() {
+    $("#example-timer").circletimer("add", 1000);
   });
         </code>
       </pre>
@@ -158,6 +163,10 @@ $(document).on("ready", function() {
 
         $("#stop").on("click", function() {
           $("#example-timer").circletimer("stop");
+        });
+
+        $("#add").on("click", function() {
+          $("#example-timer").circletimer("add", 1000);
         });
       })
     </script>
