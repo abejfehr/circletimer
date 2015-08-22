@@ -74,6 +74,16 @@ methods = {
     data = this.data("ct-meta");
     window.cancelAnimationFrame(data.reqId);
     return this.data("ct-meta", data);
+  },
+  add: function(addend) {
+    var data;
+    data = this.data("ct-meta");
+    if (addend < data.timeElapsed) {
+      data.timeElapsed -= addend;
+    } else {
+      data.timeElapsed = 0;
+    }
+    return this.data("ct-meta", data);
   }
 };
 

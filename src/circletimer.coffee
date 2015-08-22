@@ -20,7 +20,7 @@ methods =
 
   # Initializes the element with the circle timer
   #
-  # @param options [Object] the
+  # @param [Object] options the options to use with the circle timer
   #
   init: (options) ->
     # Remove all the current contents
@@ -92,6 +92,17 @@ methods =
   pause: ->
     data = this.data "ct-meta"
     window.cancelAnimationFrame data.reqId
+    this.data "ct-meta", data
+
+  # Adds a given amount of time to the timer.
+  #
+  # @param [Number] added the number of milliseconds to add to the timer
+  #
+  add: (addend) ->
+    data = this.data "ct-meta"
+    if addend < data.timeElapsed
+      data.timeElapsed -= addend
+    else data.timeElapsed = 0
     this.data "ct-meta", data
 
 # Add the methods to the element being called on
