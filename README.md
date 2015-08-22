@@ -1,4 +1,4 @@
-[Circle Timer](http://www.abefehr.com/circleTimer/)
+[Circle Timer](http://www.abefehr.com/circletimer/)
 ===================================================
 
 An SVG-based jQuery and Zepto circular timer plugin.
