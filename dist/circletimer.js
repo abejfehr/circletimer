@@ -10,10 +10,11 @@ window.requestAnimFrame = (function() {
 
 methods = {
   init: function(options) {
-    var circle, data, defaults, div, svg;
+    var circle, data, defaults, div, svg,offsetDirection;
     this.empty();
     defaults = {
       timeout: 5000,
+      clockwise: false,
       onComplete: (function() {}),
       onUpdate: (function() {})
     };
@@ -48,6 +49,7 @@ methods = {
         data.timeElapsed += timestamp - lastTimestamp;
       }
       lastTimestamp = timestamp;
+      offsetDirection = data.options.clockwise ? -1 : 1;
       circle.css("stroke-dashoffset", (50 * Math.PI * data.timeElapsed / data.options.timeout) + "%");
       if (data.timeElapsed < data.options.timeout) {
         data.reqId = window.requestAnimationFrame(step);
