@@ -1,7 +1,7 @@
 [Circle Timer](http://www.abefehr.com/circletimer/)
 ===================================================
 
-An SVG-based jQuery and Zepto circular timer plugin.
+An [SVG](http://www.w3.org/Graphics/SVG/)-based [jQuery](https://jquery.com) and [Zepto](http://zeptojs.com) circular timer plugin.
 
 How to use
 ----------
@@ -10,9 +10,9 @@ Fork this repository or download the `circletimer.min.js` and `circle.css` files
 ### Options
 
 * **timeout** *(number)*:  the time that the timer should count for, in milleseconds. The default value is `5000`
-* **onComplete** *(function)* the callback to be executed when the time has run out. The default value is an empty function
-* **onUpdate** *(function)* the callback to be executed each update of the timer. The default value is an empty function
-* **clockwise** *(boolean)* whether or not the timer should be going clockwise. If set to false, the timer moves counterclockwise. The default value is `true`
+* **onComplete** *(function)*: the callback to be executed when the time has run out. The default value is an empty function
+* **onUpdate** *(function)*: the callback to be executed each update of the timer. The default value is an empty function
+* **clockwise** *(boolean)*: whether or not the timer should be going clockwise. If set to false, the timer moves counterclockwise. The default value is `true`
 
 
 ### Example Code
@@ -58,7 +58,7 @@ This plugin is written in [CoffeeScript](http://coffeescript.org) and is compile
 5. Compile your changes to JS by executing `grunt` from the root of the repo
 6. Check out if they work by serving the `index.html` file in the root of the directory using your new change
 7. If it works, create a pull request with the new change!
-8. Pat yourself on the back and reward yourself with a candy bar! Mmmmm, candy.
+8. Pat yourself on the back and reward yourself with a candy bar! Mmmmm, *candy*.
 
 License
 -------
