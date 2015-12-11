@@ -7,7 +7,7 @@
 #
 $ = (window.jQuery || window.Zepto)
 
-# An attempt to make this as cross-browser as possible
+# A polyfill to make this as cross-browser as possible
 window.requestAnimFrame = do ->
   window.requestAnimationFrame or
   window.webkitRequestAnimationFrame or
@@ -20,7 +20,16 @@ methods =
 
   # Initializes the element with the circle timer
   #
-  # @param [Object] options the options to use with the circle timer
+  # @param [Object] options the options to use with the circle timer.
+  # @option options [Number] timeout the time that the timer should count for,
+  #   in milleseconds. The default value is `5000`
+  # @option options [Function] onComplete the callback to be executed when the
+  #   time has run out. The default value is an empty function
+  # @option options [Function] onUpdate the callback to be executed each update
+  #   of the timer. The default value is an empty function
+  # @option options [Boolean] clockwise whether or not the timer should be going
+  #   clockwise. If set to false, the timer moves counterclockwise. The default
+  #   value is `true`
   #
   init: (options) ->
     # Remove all the current contents
@@ -30,6 +39,7 @@ methods =
       timeout: 5000
       onComplete: (->)
       onUpdate: (->)
+      clockwise: true
     data = {}
     data.options = $.extend defaults, options
     this.data "ct-meta", data
@@ -47,7 +57,7 @@ methods =
     # Place the timer in the containing element
     this.append div
 
-  # Starts the timer inside the element being called on
+  # Starts the timer
   #
   start: ->
     data = this.data("ct-meta")
@@ -63,9 +73,10 @@ methods =
     step = (timestamp) ->
       if lastTimestamp? then data.timeElapsed += timestamp - lastTimestamp
       lastTimestamp = timestamp
+      direction = if data.options.clockwise then -1 else 1
       # Make the circle smaller by increasing the stroke's dashoffset
       circle.css "stroke-dashoffset",
-      "#{50 * Math.PI * data.timeElapsed / data.options.timeout}%"
+      "#{direction * 50 * Math.PI * data.timeElapsed / data.options.timeout}%"
       if data.timeElapsed < data.options.timeout
         data.reqId = window.requestAnimationFrame(step)
         # Do the update for the user
@@ -77,7 +88,7 @@ methods =
     data.reqId = window.requestAnimationFrame(step)
     this.data "ct-meta", data
 
-  # Stops the timer in the element being called on
+  # Stops the timer
   #
   stop: ->
     data = this.data "ct-meta"
@@ -86,15 +97,14 @@ methods =
     data.options.onUpdate(data.timeElapsed)
     this.data "ct-meta", data
 
-  # Pauses the timer in the element being called on. The timer can be restarted
-  #   again with "start"
+  # Pauses the timer. The timer can be restarted again with {start}
   #
   pause: ->
     data = this.data "ct-meta"
     window.cancelAnimationFrame data.reqId
     this.data "ct-meta", data
 
-  # Adds a given amount of time to the timer.
+  # Adds a given amount of time to the timer
   #
   # @param [Number] added the number of milliseconds to add to the timer
   #
@@ -105,7 +115,7 @@ methods =
     else data.timeElapsed = 0
     this.data "ct-meta", data
 
-# Add the methods to the element being called on
+# Installs the plugin to a particular element
 #
 $.fn.circletimer = (methodOrOptions) ->
   if methods[methodOrOptions]

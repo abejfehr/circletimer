@@ -15,7 +15,8 @@ methods = {
     defaults = {
       timeout: 5000,
       onComplete: (function() {}),
-      onUpdate: (function() {})
+      onUpdate: (function() {}),
+      clockwise: true
     };
     data = {};
     data.options = $.extend(defaults, options);
@@ -44,11 +45,13 @@ methods = {
     }
     circle = $(this).find("circle");
     step = function(timestamp) {
+      var direction;
       if (lastTimestamp != null) {
         data.timeElapsed += timestamp - lastTimestamp;
       }
       lastTimestamp = timestamp;
-      circle.css("stroke-dashoffset", (50 * Math.PI * data.timeElapsed / data.options.timeout) + "%");
+      direction = data.options.clockwise ? -1 : 1;
+      circle.css("stroke-dashoffset", (direction * 50 * Math.PI * data.timeElapsed / data.options.timeout) + "%");
       if (data.timeElapsed < data.options.timeout) {
         data.reqId = window.requestAnimationFrame(step);
         return data.options.onUpdate(data.timeElapsed);
